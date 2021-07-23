@@ -2,7 +2,7 @@ import {axiosWithAuth} from '../helpers/axiosWithAuth';
 
 const fetchColorService = () => {
     return axiosWithAuth()
-        .get('/api/colors')
+        .get('/colors')
         .then((res) => {
             console.log("fetchColorService ", res);
             return (res.data)
