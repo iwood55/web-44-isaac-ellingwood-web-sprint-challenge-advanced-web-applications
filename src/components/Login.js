@@ -1,11 +1,13 @@
 import React, {useState} from "react";
-import axios from 'axios'
+import {axiosWithAuth} from '../helpers/axiosWithAuth'
 import {useHistory} from 'react-router-dom';
 
 const Login = () => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
+  const [ form, setForm ] = useState({ username: '', password: '' })
 
+  
   const initialValues = {
     username: '',
     password: ''
@@ -26,20 +28,28 @@ const Login = () => {
 
   const submitHandler = e => {
     e.preventDefault();
+    axiosWithAuth().post('/login', form )
+            .then( res => {
+                localStorage.setItem('token', res.data.payload)
+                push('/bubbles')
+            }
+        )
+            .catch( err => console.log(err) )
+    
     if (formValues.username !== 'Lambda' || formValues.password !== 'School') {
       setError('Username or Password incorrect')
     }
 
-    axios
-      .post('/api/login', formValues)
-      .then((res) => {
-        console.log("Axios Login Post", res)
-        localStorage.setItem('token', res.data.payload)
-        push('/bubblepage')
-      })
-      .catch((err) => {
-        console.log({ err })
-      })
+    // axios
+    //   .post('/api/login', formValues)
+    //   .then((res) => {
+    //     console.log("Axios Login Post", res)
+    //     localStorage.setItem('token', res.data.payload)
+    //     push('/bubblepage')
+    //   })
+    //   .catch((err) => {
+    //     console.log({ err })
+    //   })
   }
 
   return (
