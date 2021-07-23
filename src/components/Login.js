@@ -15,7 +15,7 @@ const Login = () => {
 
   const {push} = useHistory();
   // const [formValues, setFormValues] = useState(initialValues);
-  const [error] = useState();
+  const [error, setError] = useState();
 
   //replace with error state
 
@@ -30,10 +30,9 @@ const Login = () => {
             }
         )
             .catch( err => console.log(err) )
-    
-    // if (formValues.username !== 'Lambda' || formValues.password !== 'School') {
-    //   setError('Username or Password incorrect')
-    // }
+      if (form.username !== 'Lambda' || form.password !== 'School') {
+      setError('Username or Password incorrect')
+    }
 
     // axios
     //   .post('/api/login', formValues)

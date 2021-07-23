@@ -14,7 +14,7 @@ const BubblePage = () => {
 
   const saveEdit = (editColor) => {
     axiosWithAuth()
-      .put(`/api/colors/${editColor.id}`, editColor)
+      .put(`/colors/${editColor.id}`, editColor)
       .then((res) => {
         console.log(res)
 
@@ -37,7 +37,7 @@ const BubblePage = () => {
 
   const deleteColor = (colorToDelete) => {
     axiosWithAuth()
-      .delete(`/api/colors/${colorToDelete.id}`)
+      .delete(`/colors/${colorToDelete.id}`)
       .then((res) => {
         setColors(colors.filter(color => color.id !== colorToDelete.id))
       })
