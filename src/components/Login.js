@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {axiosWithAuth} from '../helpers/axiosWithAuth';
+import axios from 'axios'
 import {useHistory} from 'react-router-dom';
 
 const Login = () => {
@@ -30,7 +30,7 @@ const Login = () => {
       setError('Username or Password incorrect')
     }
 
-    axiosWithAuth()
+    axios
       .post('/api/login', formValues)
       .then((res) => {
         console.log("Axios Login Post", res)
