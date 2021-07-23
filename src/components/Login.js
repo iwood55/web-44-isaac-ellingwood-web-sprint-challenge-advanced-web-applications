@@ -8,23 +8,18 @@ const Login = () => {
   const [ form, setForm ] = useState({ username: '', password: '' })
 
   
-  const initialValues = {
-    username: '',
-    password: ''
-  }
+  // const initialValues = {
+  //   username: '',
+  //   password: ''
+  // }
 
   const {push} = useHistory();
-  const [formValues, setFormValues] = useState(initialValues);
-  const [error, setError] = useState();
+  // const [formValues, setFormValues] = useState(initialValues);
+  const [error] = useState();
 
   //replace with error state
 
-  const handleChange = e => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleChange = e => setForm({ ...form, [ e.target.name ]: e.target.value });
 
   const submitHandler = e => {
     e.preventDefault();
@@ -36,9 +31,9 @@ const Login = () => {
         )
             .catch( err => console.log(err) )
     
-    if (formValues.username !== 'Lambda' || formValues.password !== 'School') {
-      setError('Username or Password incorrect')
-    }
+    // if (formValues.username !== 'Lambda' || formValues.password !== 'School') {
+    //   setError('Username or Password incorrect')
+    // }
 
     // axios
     //   .post('/api/login', formValues)
@@ -67,7 +62,7 @@ const Login = () => {
             id="username"
             data-testid="username"
             name="username"
-            value={formValues.username}
+            value={form.username}
             onChange={handleChange}
           /><br/><br/>
 
@@ -78,7 +73,7 @@ const Login = () => {
             id="password"
             data-testid="password"
             name="password"
-            value={formValues.password}
+            value={form.password}
             onChange={handleChange}
           /><br/>
 
